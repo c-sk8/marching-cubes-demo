@@ -23,3 +23,7 @@ Click on the buttons or use the following keys:
 This project would have taken a lot longer without help from:
 - https://chatgpt.com
 - https://threejs.org
+
+## Screenshots
+
+<img src="https://raw.githubusercontent.com/c-sk8/marching-cubes-demo/refs/heads/main/screenshots/marching-cubes-1.jpg" alt="no image" width="295"/> <img src="https://raw.githubusercontent.com/c-sk8/marching-cubes-demo/refs/heads/main/screenshots/marching-cubes-2.jpg" alt="no image" width="295"/>
