@@ -3,7 +3,8 @@
 - real-time slice rendering of surface generation.
 - designed to work in any browser - even on phones and tablets.
 - select differeent speed and detail levels
-- multiple field functions and surface colours and patterns.
+- multiple field functions and surface colours with patterns.
+- advanced optimisation code to get the best performance
 
 http://c-sk8.github.io/marching-cubes-demo
 
