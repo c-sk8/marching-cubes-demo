@@ -1,6 +1,9 @@
 # Marching Cubes Demo
 
-A real-time marching cubes surface visualiser with progressive slice rendering.
+- real-time slice rendering of surface generation.
+- designed to work in any browser - even on phones and tablets.
+- select differeent speed and detail levels
+- multiple field functions and surface colours and patterns.
 
 http://c-sk8.github.io/marching-cubes-demo
 
