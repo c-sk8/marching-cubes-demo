@@ -18,3 +18,7 @@ Click on the buttons or use the following keys:
 | / | Toggle between flat face and computed normals |  
 | w or + | Zoom in  | 
 | s or - | Zoom out  | 
+
+This project would have taken a lot longer without help from:
+- https://chatgpt.com
+- https://threejs.org
