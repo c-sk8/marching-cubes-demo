@@ -28,6 +28,7 @@ Click the on-screen buttons or use the keyboard:
 | Up Arrow | Next colour / pattern mode |
 | Down Arrow | Previous colour / pattern mode |
 | / | Toggle flat shading / smooth normals |
+| \ | Toggle suface generation animation |
 | W or + | Zoom in |
 | S or - | Zoom out |
 | h or H | Hide and show controls |
