@@ -5,25 +5,17 @@
 // Free Software Foundation, version 3.
 // =====================================================================================
 
-import {	zoomIn, zoomOut,
-			set_X_RotationVelocity, set_Y_RotationVelocity,
-			isUpsideDown, resetRotation,
-			set_X_TargetRotationVelocity, get_X_TargetRotationVelocity,
-			set_Y_TargetRotationVelocity, get_Y_TargetRotationVelocity,
-			set_Z_TargetRotationVelocity, get_Z_TargetRotationVelocity,
-			} from './animate.js';
-import {	nextVariant, previousVariant,
-			nextColourMode, previousColourMode } from './field-functions-manager.js';
-import { 	updateHUD } from './hud.js';
+import {	zoomIn, zoomOut, set_X_RotationVelocity, set_Y_RotationVelocity,
+			isUpsideDown } from './animate.js';
 import {	toggleHideControls, processFlatShadingToggle,
 			nextSurface, previousSurface, fieldIndex, animateGen,
 			doXRotation, doYRotation, doResetRotation,
 			doAnimateGen, doNextVariant, doPrevVariant,
 			doNextColour, doPrevColour, doCubeLevel } from './event-process.js';
 
-// ============================================================
+// =====================================================================================
 //	Handle button presses
-// ============================================================
+// =====================================================================================
 
 document.getElementById("hideControls").onclick = () => { toggleHideControls(); }
 document.getElementById("showControls").onclick = () => { toggleHideControls(); }
@@ -45,9 +37,9 @@ document.getElementById("num2").onclick  = () => { doCubeLevel(2); }
 document.getElementById("num3").onclick  = () => { doCubeLevel(3); }
 document.getElementById("num4").onclick  = () => { doCubeLevel(4); }
 
-// ============================================================
+// =====================================================================================
 //	Handle key presses
-// ============================================================
+// =====================================================================================
 
 window.addEventListener('keydown', (e) => {
     
@@ -72,12 +64,9 @@ window.addEventListener('keydown', (e) => {
 
 });
 
-// ============================================================
+// =====================================================================================
 //	Handle touch
-// ============================================================
-
-let rotX = 0;
-let rotY = 0;
+// =====================================================================================
 
 let lastX = 0;
 let lastY = 0;
@@ -96,11 +85,7 @@ window.addEventListener("touchmove", e => {
 
 	const dx = touch.clientX - lastX;
 	const dy = touch.clientY - lastY;
-
-	const rotY = isUpsideDown()
-		? -dx
-		:  dx;
-
+	const rotY = isUpsideDown() ? -dx :  dx;
 	const rotX = dy;
 
 	set_X_RotationVelocity(rotX);
@@ -111,9 +96,9 @@ window.addEventListener("touchmove", e => {
 
 }, { passive: false });
 
-// ============================================================
+// =====================================================================================
 //	Handle mouse and trackpad
-// ============================================================
+// =====================================================================================
 
 let dragging = false;
 
@@ -133,16 +118,9 @@ window.addEventListener("mousemove", e => {
 	const dx = e.clientX - lastX;
 	const dy = e.clientY - lastY;
 
-	let rotY = isUpsideDown() ? -dx :  dx;
-	let rotX = dy;
-
 	const MAX_SPEED = 50;
-	
-	rotX = Math.max(-MAX_SPEED,
-		Math.min(MAX_SPEED, rotX));
-	
-	rotY = Math.max(-MAX_SPEED,
-		Math.min(MAX_SPEED, rotY));
+	const rotX = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, dy));
+	const rotY = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, isUpsideDown() ? -dx :  dx));
 	
 	set_X_RotationVelocity(rotX);
 	set_Y_RotationVelocity(rotY);
