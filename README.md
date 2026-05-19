@@ -20,6 +20,8 @@ A real-time marching cubes surface visualiser with progressive slice-by-slice re
 
 ## Controls
 
+Click and drag with a mouse to rotate the surface. Touch devices are also supported.
+
 Click the on-screen buttons or use the keyboard:
 
 | Key | Action |
@@ -36,6 +38,9 @@ Click the on-screen buttons or use the keyboard:
 | S or - | Zoom out |
 | h or H | Hide and show controls |
 | 1, 2, 3, 4 | Level of detail |
+| X or x | Toggle on/off x-axis rotation |
+| Y or y | Toggle on/off y-axis rotation |
+| = | Reset rotation |
 
 ---
 
