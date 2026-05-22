@@ -607,17 +607,18 @@ export function GyroidFloor(x, y, z, params) {
 	
 	const horizontal_scale = params[0];
 	const vertical_scale = params[1];
+	const softness = params[2];
 	
     let sx = x * horizontal_scale;
-    let sy = (y-0.6) * vertical_scale;
+    let sy = (y - 1) * vertical_scale;
     let sz = z * horizontal_scale;
 	
-    const sphere = (x * x) + (y * y * 2.5) + (z * z) - 1;
+    const super_sphere = (x * x * x * x) + (y * y * y * y) + (z * z * z * z) - 1;
 
 	const gyroid = Math.sin(sx) * Math.cos(sy) + 
                Math.sin(sy) * Math.cos(sz) + 
                Math.sin(sz) * Math.cos(sx);
 	const surface_top = gyroid + (sy * 0.5) + 2; 
 
-    return smoothMax(surface_top, sphere, 3);
+    return smoothMax(surface_top, super_sphere, softness);
 }
