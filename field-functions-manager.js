@@ -443,37 +443,24 @@ const fieldList = [
 	colourMode: 1,
 	currentVariant: 0,
 	variants: [
-		{ params: [2, 0.6, 1.5], bounds: [0.1251,0.8749,0.1251,0.8749,0.1251,0.8749] },
-		{ params: [2, 1, 1.5], bounds: [0.0259,0.9741,0.0259,0.9741,0.0259,0.9741] },
-		{ params: [1, 1, 1], bounds: [0.0707,0.9293,0.0707,0.9293,0.0707,0.9293] }
+		{ params: [1.45, 1, 1.5]},
+		{ params: [0.7, 1, 2.5]},
+		{ params: [1.2, 1, 0.9]}
 	]
 },
 {
-	name: "Gyroid Floor Sphere",
+	name: "Gyroid Floor",
 	fn: GyroidFloor,
 	colourMode: 2,
-	currentVariant: 0,
+	currentVariant: 3,
 	variants: [
-		{ params: [9, 9], bounds: [0.0094,0.9693,0.1839,0.6940,0.0040,0.9885] }
+		{ params: [3, 2.5, 1.5] },
+		{ params: [4, 2.5, 1.5] },
+		{ params: [5, 2.5, 1.5] },
+		{ params: [6, 2.5, 1.5] },
+		{ params: [6, 3.0, 1.5] },
+		{ params: [6, 3.5, 1.5] },
+		{ params: [6, 4.0, 1.5] }
 	]
 }
 ];
-
-/*
-{
-	name: "Super Sphere",
-	fn: SuperSphere,
-	colourMode: 2,
-	currentVariant: 2,
-	variants: [
-		{ params: [1, 1], bounds: [0.226,0.774,0.226,0.774,0.226,0.774] },
-		{ params: [1, 1.5], bounds: [0.165,0.835,0.165,0.835,0.165,0.835] },
-		{ params: [1, 2], bounds: [0.129,0.871,0.129,0.871,0.129,0.871] },
-		{ params: [1, 2.5], bounds: [0.107,0.893,0.107,0.893,0.107,0.893] },
-		{ params: [1, 3], bounds: [0.09,0.91,0.09,0.91,0.09,0.91] },
-		{ params: [1, 3.5], bounds: [0.079,0.921,0.079,0.921,0.079,0.921] },
-		{ params: [1, 4], bounds: [0.069,0.931,0.069,0.931,0.069,0.931] },
-		{ params: [1, 4.5], bounds: [0.062,0.938,0.062,0.938,0.062,0.938] }
-	]
-},
-*/
