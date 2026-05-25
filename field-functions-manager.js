@@ -10,7 +10,7 @@ import {	Decocube, Tooth, SuperSphere, GumdropTorus, SinusoidalSphere,
 			MoebiusStrip, AlgebraicSurface, SurfacePattern, BlobRing,
 			PiriformDiabolo, SuperSphereCluster, Tetrahedral, ThreeTori,
 			RadialWaveSphere, FlattenedWavePattern, SpheredSchwarzP,
-			Rhombicuboctahedron, GyroidFloor
+			Rhombicuboctahedron, GyroidFloor, LidinoidSurface
  			} from './field-functions.js';
 
 export function getNextFieldFunctionIndex(index) {
@@ -143,7 +143,7 @@ const fieldList = [
 	]
 },
 {
-	name: "GumdropTorus",
+	name: "Gumdrop Torus",
 	fn: GumdropTorus,
 	colourMode: 3,
 	currentVariant: 5,
@@ -221,7 +221,7 @@ const fieldList = [
 	]
 },
 {
-	name: "Twisted Wave Torus",
+	name: "Twisted Torus",
 	fn: TwistedWaveTorus,
 	colourMode: 1,
 	currentVariant: 8,
@@ -281,7 +281,7 @@ const fieldList = [
 	]
 },
 {
-	name: "Cosine Egg Box",
+	name: "Cosine Pattern",
 	fn: SurfacePattern,
 	colourMode: 11,
 	currentVariant: 2,
@@ -379,7 +379,7 @@ const fieldList = [
 	]
 },
 {
-	name: "Drei Tori",
+	name: "Three Tori",
 	fn: ThreeTori,
 	colourMode: 11,
 	currentVariant: 0,
@@ -461,6 +461,16 @@ const fieldList = [
 		{ params: [6, 3, 1.5], bounds: [0.0017,0.9953,0.0000,0.8151,0.0065,0.9945] },
 		{ params: [6, 3.5, 1.5], bounds: [0.0010,0.9983,0.0000,0.8387,0.0067,0.9943] },
 		{ params: [6, 4, 1.5], bounds: [0.0007,0.9992,0.0000,0.8562,0.0050,0.9957] }
+	]
+},
+{
+	name: "Lidinoid Surface",
+	fn: LidinoidSurface,
+	colourMode: 1,
+	currentVariant: 0,
+	variants: [
+		{ params: [3.7,1,1.5] },
+		{ params: [2.2,1,2] }
 	]
 }
 ];
