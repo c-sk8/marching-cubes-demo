@@ -79,7 +79,7 @@ export function SmoothPaletteGradient(x, y, z, palette, l_stripe = 0.95) {
 const aqua = [[160, 1.00, 0.5],[180, 1.00, 0.5],[200, 1.00, 0.5]];
 const yellow_to_red = [[37,1,.55],[0,1,.4]];
 const spring_greens = [[50, 1.00, 0.4],[60, 1.00, 0.30],[70, 1.00, 0.2]];
-const pinks_and_purples = [[282,1,0.3],[307,1,0.5]];
+const pinks_and_purples = [[282,0.7,0.25],[307,0.7,0.6]];
 const pale_blues = [[190,0.7,0.8],[210,0.6,0.5],[210,0.6,0.5],[190,0.7,0.8]];
 const orange = [[5,1,0.5],[23,1,0.5],[23,1,0.5],[5,1,0.5]];
 const yellow_roses = [[80,0.91,0.18],[80,1,0.22],[44,1,0.5],[47,1,0.53]];
@@ -126,7 +126,7 @@ export const colourModeFunctions = [
     },
   	{
     	name: "Pinks And Purples",
-		fn: (x, y, z) => SmoothPaletteGradient(x, y, z, pinks_and_purples)
+		fn: (x, y, z) => SmoothPaletteGradient(x, y, z, pinks_and_purples, 0.9)
     },
    	{
     	name: "Orange",
