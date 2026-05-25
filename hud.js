@@ -11,15 +11,19 @@ import {	getFieldIndexString, getFieldName, getVariantIndexString, getColourMode
 		 from './field-functions-manager.js';
 
 export function updateHUD() {
-    document.getElementById("surfaceIndex").textContent = getFieldIndexString(fieldIndex);
     document.getElementById("surfaceName").textContent = getFieldName(fieldIndex);
-    document.getElementById("variantIndex").textContent = getVariantIndexString(fieldIndex);
-    document.getElementById("colourModeIndex").textContent = getColourModeIndexString(getColourMode(fieldIndex));
     document.getElementById("colourMode").textContent = getColourModeName(getColourMode(fieldIndex));
+
+    //document.getElementById("surfaceIndex").textContent = getFieldIndexString(fieldIndex);
+    //document.getElementById("variantIndex").textContent = getVariantIndexString(fieldIndex);
+    //document.getElementById("colourModeIndex").textContent = getColourModeIndexString(getColourMode(fieldIndex));
 }
 
+function formatVertices(count) {
+    return Math.round(count / 1000) + 'K';
+}
 export function updateVertexCount(vertexCount) {
-	document.getElementById("vertexCount").textContent = vertexCount;
+	document.getElementById("vertexCount").textContent = formatVertices(vertexCount);
 }
 
 export function updateSurfaceGenerationTime(duration) {
