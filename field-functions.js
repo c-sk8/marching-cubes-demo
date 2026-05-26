@@ -303,6 +303,7 @@ export function SurfacePattern(x, y, z, params) {
 	
 	const horizontal_scale = params[0];
 	const vertical_scale = params[1];
+	const power = params[2];
 	
     let sx = x * horizontal_scale;
     let sy = y * vertical_scale;
@@ -310,7 +311,7 @@ export function SurfacePattern(x, y, z, params) {
 	
 	const surface_top =	Math.cos(sx) * Math.cos(sz) +
 			Math.cos((SQRT3*sx-sz)/2) * Math.cos((sx + SQRT3 * sz)/2) +
-			Math.cos((SQRT3*sx+sz)/2) * Math.cos((sx - SQRT3 * sz)/2) + sy;
+			Math.cos((SQRT3*sx+sz)/2) * Math.cos((sx - SQRT3 * sz)/2) + (sy**power);
 
     return surface_top;
 }
