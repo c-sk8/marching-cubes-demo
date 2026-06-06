@@ -97,6 +97,9 @@ export function GumdropTorus(x, y, z, params) {
 
 	const scale = params[0];
 	const modifier = params[1];
+	const xmod = params[2];
+	const ymod = params[3];
+	const zmod = params[4];
 
 	x *= scale;
 	y *= scale;
@@ -113,9 +116,9 @@ export function GumdropTorus(x, y, z, params) {
         4 * z2 * z2 +
         17 * x2 * y2 +
         17 * x2 * z2 -
-        20 * x2 -
-        20 * y2 -
-        20 * z2 +
+        zmod * x2 -
+        ymod * y2 -
+        zmod * z2 +
         modifier
     );
 }
@@ -311,7 +314,7 @@ export function SurfacePattern(x, y, z, params) {
 	
 	const surface_top =	Math.cos(sx) * Math.cos(sz) +
 			Math.cos((SQRT3*sx-sz)/2) * Math.cos((sx + SQRT3 * sz)/2) +
-			Math.cos((SQRT3*sx+sz)/2) * Math.cos((sx - SQRT3 * sz)/2) + (sy**power);
+			Math.cos((SQRT3*sx+sz)/2) * Math.cos((sx - SQRT3 * sz)/2) + sy;
 
     return surface_top;
 }
@@ -320,7 +323,7 @@ export function BlobRing(x, y, z, params) {
     const scale = params[0];
     const ringRadius = params[1];
     const sharpness = 7;
-    const blobCount = 8;
+    const blobCount = 6;
     const angleStep = TWO_PI / blobCount;
 
     x *= scale; y *= scale; z *= scale;
@@ -345,12 +348,16 @@ export function BlobRing(x, y, z, params) {
         const dz = pz;
         
         const distSq = dx * dx + y * y + dz * dz;
-        //field += Math.exp(-sharpness * distSq);
+
 		if (distSq < 0.5) {
 		    const f = 1.0 - distSq * 2.0; 
 		    field += f * f * f; 
 		}
     }
+
+    const distsq = x * x + y * y + z * z;
+	const f2 = 1.0 - distsq * 2.0;
+	field += f2 * f2 * f2; 
 
     return field - 0.6;
 }
@@ -381,7 +388,8 @@ export function SuperSphereCluster(x, y, z, params) {
 
     const scale = params[0];
     const p = params[1];
-    const ext = params[2]; 
+    const ext = params[2];
+    const smoothness = 0.5;
 
     x *= scale;
     y *= scale;
@@ -411,12 +419,12 @@ export function SuperSphereCluster(x, y, z, params) {
     const s5 = shape(x, y - offset, z, sideScale);
     const s6 = shape(x, y + offset, z, sideScale);
 
-    field = smoothMin(field, s1, 0.4);
-    field = smoothMin(field, s2, 0.4);
-    field = smoothMin(field, s3, 0.4);
-    field = smoothMin(field, s4, 0.4);
-    field = smoothMin(field, s5, 0.4);
-    field = smoothMin(field, s6, 0.4);
+    field = smoothMin(field, s1, smoothness);
+    field = smoothMin(field, s2, smoothness);
+    field = smoothMin(field, s3, smoothness);
+    field = smoothMin(field, s4, smoothness);
+    field = smoothMin(field, s5, smoothness);
+    field = smoothMin(field, s6, smoothness);
 
     return field;
 }

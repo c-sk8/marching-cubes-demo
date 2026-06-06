@@ -50,3 +50,4 @@ This project would have taken much longer without help from:
 
 - https://chatgpt.com  
 - https://threejs.org
+- https://coolors.co

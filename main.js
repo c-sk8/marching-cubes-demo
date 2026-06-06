@@ -6,14 +6,16 @@
 // =====================================================================================
 
 import * as THREE from './three.module.js';
-import {	rebuildSurface } from './surface-builder.js';
+import {	rebuildSurface, initialiseGeometry } from './surface-builder.js';
 import {	animate } from './animate.js';
 import { 	updateHUD } from './hud.js';
-import { } from './event-handler.js';
-//import { generateAllBounds } from './bounds-generator.js';
+import {	setMaxVertices } from './cube-marcher.js';
+import {	} from './event-handler.js';
+import {	updateSampling, fieldIndex, animateGen } from './event-process.js';
 
-rebuildSurface(0, true);
+setMaxVertices();
+initialiseGeometry();
+updateSampling(fieldIndex);
+rebuildSurface(fieldIndex, animateGen);
 updateHUD();
 animate();
-
-//generateAllBounds();

@@ -11,18 +11,16 @@ import { mesh } from './surface-builder.js';
 
 let x_rotation_velocity = 0;
 let y_rotation_velocity = 0;
-let z_rotation_velocity = 0;
 
 let x_target_rotation_velocity = 0;
 let y_target_rotation_velocity = 0;
-let z_target_rotation_velocity = 0;
 
 const VELOCITY_SCALE = 0.1;
 const MOTION_DAMPENER = 0.06;
 
-let cameraZ = 3;
-let targetCameraZ = 3;
-const step = 0.5;
+let cameraZ = 4.5;
+let targetCameraZ = 3.5;
+const step = 0.3;
 
 let clock = new THREE.Clock();
 
@@ -71,18 +69,9 @@ export function get_Y_TargetRotationVelocity() {
 	return y_target_rotation_velocity;
 }
 
-export function set_Z_TargetRotationVelocity(target_velocity) {
-	z_target_rotation_velocity = target_velocity;
-		}
-
-export function get_Z_TargetRotationVelocity() {
-	return z_target_rotation_velocity;
-}
-
 export function resetRotation() {
 	mesh.rotation.x = 0;
 	mesh.rotation.y = 0;
-	mesh.rotation.z = 0;
 }
 
 export function animate() {
@@ -96,9 +85,6 @@ export function animate() {
 	y_rotation_velocity += (y_target_rotation_velocity - y_rotation_velocity) * MOTION_DAMPENER;
 	mesh.rotation.y += y_rotation_velocity * VELOCITY_SCALE * delta;
 	
-	z_rotation_velocity += (z_target_rotation_velocity - z_rotation_velocity) * MOTION_DAMPENER;
-	mesh.rotation.z += z_rotation_velocity * VELOCITY_SCALE * delta;
-
 	cameraZ += (targetCameraZ - cameraZ) * 0.1;
 	camera.position.z = cameraZ;
 	camera.lookAt(0, 0, 0);

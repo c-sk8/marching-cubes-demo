@@ -5,18 +5,29 @@
 // Free Software Foundation, version 3.
 // =====================================================================================
 
-import {	toggleFlatShading, rebuildSurface,
-			initialiseGeometry, destroyGeometry } from './surface-builder.js';
-import {	setGridSize} from './cube-marcher.js';
-import {	getNextFieldIndex, getPreviousFieldIndex } from './field-functions-manager.js';
-import { 	updateHUD } from './hud.js';
-import {	nextVariant, previousVariant,
-			nextColourMode, previousColourMode } from './field-functions-manager.js';
-import {	set_X_RotationVelocity, set_Y_RotationVelocity,
-			set_X_TargetRotationVelocity, get_X_TargetRotationVelocity,
-			set_Y_TargetRotationVelocity, get_Y_TargetRotationVelocity,
-			isUpsideDown, resetRotation } from './animate.js';
-import {	getColourModeCount } from './colour-modes.js';
+import {	toggleFlatShading,
+			rebuildSurface,
+			initialiseGeometry,
+			destroyGeometry }		from './surface-builder.js';
+import {	getNextFieldIndex,
+			getPreviousFieldIndex }	from './field-functions-manager.js';
+import { 	updateHUD }				from './hud.js';
+import {	nextVariant,
+			previousVariant,
+			getBounds,
+			nextColourMode,
+			previousColourMode }	from './field-functions-manager.js';
+import {	set_X_RotationVelocity,
+			set_Y_RotationVelocity,
+			set_X_TargetRotationVelocity,
+			get_X_TargetRotationVelocity,
+			set_Y_TargetRotationVelocity,
+			get_Y_TargetRotationVelocity,
+			isUpsideDown,
+			resetRotation }			from './animate.js';
+import {	getColourModeCount }	from './cube-colour.js';
+import {	sampling }				from './sampling.js';
+
 
 export let fieldIndex = 0;
 export let animateGen = true; // animate surface generation
@@ -52,12 +63,14 @@ export function processFlatShadingToggle() {
 
 export function nextSurface() {
     fieldIndex = getNextFieldIndex(fieldIndex);
+	updateSampling(fieldIndex);
     updateHUD();
 	rebuildSurface(fieldIndex, animateGen);
 }
 
 export function previousSurface() {
     fieldIndex = getPreviousFieldIndex(fieldIndex);
+	updateSampling(fieldIndex);
     updateHUD();
 	rebuildSurface(fieldIndex, animateGen);
 }
@@ -128,12 +141,14 @@ export function doAnimateGen() {
 
 export function doNextVariant() {
     nextVariant(fieldIndex);
+	updateSampling(fieldIndex);
     updateHUD();
 	rebuildSurface(fieldIndex, animateGen);
 }
 
 export function doPrevVariant() {
     previousVariant(fieldIndex);
+	updateSampling(fieldIndex);
     updateHUD();
 	rebuildSurface(fieldIndex, animateGen);
 }
@@ -163,10 +178,21 @@ export function doCubeLevel(level) {
 
 	// 5. Run your shared geometry logic once
 	destroyGeometry();
-	setGridSize(size);
+	sampling.setSamplingLevel(level - 1);
+	updateSampling(fieldIndex);
+    updateHUD();
 	initialiseGeometry();
 	rebuildSurface(fieldIndex, animateGen);
 }
 
+export function updateSampling(fieldIndex) {
+
+	const bounds = getBounds(fieldIndex);
+	
+	sampling.resetSteps();
+	sampling.setBounds(bounds);
+	sampling.calculateDimensions();
+	sampling.enforceMinimumDimensions();
+}
 
 
