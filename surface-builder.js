@@ -28,6 +28,15 @@ let slice0 = null;
 let slice1 = null;
 //let generationStartTime = 0;
 
+	material = new THREE.MeshPhongMaterial({
+		vertexColors: true,
+		side: THREE.DoubleSide,
+		shininess: 50,
+		specular: new THREE.Color(0x333333),
+		flatShading: false
+	});
+
+
 export function initialiseGeometry()
 {
 	geometry = new THREE.BufferGeometry();
@@ -40,14 +49,18 @@ export function initialiseGeometry()
 		new THREE.BufferAttribute(colors, 3).setUsage(THREE.DynamicDrawUsage));	
 
 	geometry.setDrawRange(0, 0); // nothing visible yet
+
+    mesh = new THREE.Mesh(geometry, material);
+
+    scene.add(mesh);
 }
 
-export function destroyGeometry()
-{
-	scene.remove(mesh);
-	mesh.geometry.dispose();
-	mesh.material.dispose();
-}
+//export function destroyGeometry()
+//{
+//	scene.remove(mesh);
+//	mesh.geometry.dispose();
+//	mesh.material.dispose();
+//}
 
 export function toggleFlatShading() {
 	flatShading = !flatShading
@@ -118,50 +131,50 @@ function generateGeometry(token, fieldIndex) {
 	}
 }
 
-export function destroyMesh()
-{
-	if(mesh !== null) {
-		scene.remove(mesh);
-		mesh.geometry.dispose();
-		mesh.material.dispose();
-	}
-}
+//export function destroyMesh()
+//{
+//	if(mesh !== null) {
+//		scene.remove(mesh);
+//		mesh.geometry.dispose();
+//		mesh.material.dispose();
+//	}
+//}
 
 export function rebuildSurface(fieldIndex = 0, animateSurfaceGeneration = false) {
  
- 	let rotation_x = 0;
- 	let rotation_y = 0;
+ 	//let rotation_x = 0;
+ 	//let rotation_y = 0;
  	
-	if(mesh !== null) {
-		rotation_x = mesh.rotation.x;
-		rotation_y = mesh.rotation.y;
+	//if(mesh !== null) {
+	//	rotation_x = mesh.rotation.x;
+	//	rotation_y = mesh.rotation.y;
 		
-		scene.remove(mesh);
-		mesh.geometry.dispose();
-		mesh.material.dispose();
-	}
+	//	scene.remove(mesh);
+	//	mesh.geometry.dispose();
+	//	mesh.material.dispose();
+	//}
 
-	material = new THREE.MeshPhongMaterial({
-		vertexColors: true,
-		side: THREE.DoubleSide,
-		shininess: 150,
-		specular: new THREE.Color(0x333333),
-		flatShading: false
-	});
+	//material = new THREE.MeshPhongMaterial({
+	//	vertexColors: true,
+	//	side: THREE.DoubleSide,
+	//	shininess: 150,
+	//	specular: new THREE.Color(0x333333),
+	//	flatShading: false
+	//});
 
-	zIndex = null;
-	resetVertexCount();
-    mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.x = rotation_x;
-    mesh.rotation.y = rotation_y;
+    //mesh = new THREE.Mesh(geometry, material);
+    //mesh.rotation.x = rotation_x;
+    //mesh.rotation.y = rotation_y;
 
-    scene.add(mesh);
+    //scene.add(mesh);
 
 	if(animateSurfaceGeneration)
 	{
 		generationToken++;
 		const myToken = generationToken;
 		
+		zIndex = null;
+		resetVertexCount();
     	generateGeometry(myToken, fieldIndex);
     }
     else

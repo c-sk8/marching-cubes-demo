@@ -166,6 +166,7 @@ function getVal(data, x, y, height) {
 
 export function CubeMarcher(flatShading, sampling, field_fn, field_fn_params, noise, colour_fn) {
 
+	vertexCount = 0;
 	let slice0 = null;
 	let slice1 = null;
 
